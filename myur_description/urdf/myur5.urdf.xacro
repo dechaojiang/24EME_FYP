@@ -43,6 +43,12 @@
         <parent link="table"/>
         <child link="base_link"/>
     </joint>
-
-</robot>
     
+    <xacro:include filename="$(find robotiq_2f_140_gripper_visualization)/urdf/robotiq_arg2f_140_model.xacro" /> 
+    <joint name="end_effector_joint" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="wrist_3_link"/>
+        <child link="robotiq_arg2f_base_link"/>
+        
+    </joint>
+</robot>
