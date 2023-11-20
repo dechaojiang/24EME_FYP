@@ -1,0 +1,8 @@
+prefix=/home/cheney/24EME_FYP/install
+
+Name: myur_description
+Description: Description of myur_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
