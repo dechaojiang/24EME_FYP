@@ -55,6 +55,7 @@ CMAKE_BINARY_DIR = /home/cheney/24EME_FYP/build
 # The main recursive "all" target.
 all: gtest/all
 all: myur_description/all
+all: myur_moveit_config/all
 all: robotiq/robotiq/all
 all: robotiq/robotiq_2f_140_gripper_visualization/all
 all: robotiq/robotiq_2f_85_gripper_visualization/all
@@ -89,6 +90,7 @@ all: robotiq/robotiq_3f_rviz/all
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
 preinstall: myur_description/preinstall
+preinstall: myur_moveit_config/preinstall
 preinstall: robotiq/robotiq/preinstall
 preinstall: robotiq/robotiq_2f_140_gripper_visualization/preinstall
 preinstall: robotiq/robotiq_2f_85_gripper_visualization/preinstall
@@ -128,6 +130,7 @@ clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: myur_description/clean
+clean: myur_moveit_config/clean
 clean: robotiq/robotiq/clean
 clean: robotiq/robotiq_2f_140_gripper_visualization/clean
 clean: robotiq/robotiq_2f_85_gripper_visualization/clean
@@ -233,6 +236,24 @@ myur_description/preinstall:
 myur_description/clean: myur_description/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 .PHONY : myur_description/clean
+
+#=============================================================================
+# Directory level rules for directory myur_moveit_config
+
+# Recursive "all" directory target.
+myur_moveit_config/all:
+
+.PHONY : myur_moveit_config/all
+
+# Recursive "preinstall" directory target.
+myur_moveit_config/preinstall:
+
+.PHONY : myur_moveit_config/preinstall
+
+# Recursive "clean" directory target.
+myur_moveit_config/clean:
+
+.PHONY : myur_moveit_config/clean
 
 #=============================================================================
 # Directory level rules for directory robotiq/robotiq
