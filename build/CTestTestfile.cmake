@@ -6,6 +6,7 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("myur_description")
+subdirs("myur_moveit_config")
 subdirs("robotiq/robotiq")
 subdirs("robotiq/robotiq_2f_140_gripper_visualization")
 subdirs("robotiq/robotiq_2f_85_gripper_visualization")

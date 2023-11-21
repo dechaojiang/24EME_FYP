@@ -43,6 +43,13 @@
 /home/cheney/24EME_FYP/build/myur_description/CMakeFiles/edit_cache.dir
 /home/cheney/24EME_FYP/build/myur_description/CMakeFiles/test.dir
 /home/cheney/24EME_FYP/build/myur_description/CMakeFiles/_catkin_empty_exported_target.dir
+/home/cheney/24EME_FYP/build/myur_moveit_config/CMakeFiles/install/strip.dir
+/home/cheney/24EME_FYP/build/myur_moveit_config/CMakeFiles/install/local.dir
+/home/cheney/24EME_FYP/build/myur_moveit_config/CMakeFiles/install.dir
+/home/cheney/24EME_FYP/build/myur_moveit_config/CMakeFiles/list_install_components.dir
+/home/cheney/24EME_FYP/build/myur_moveit_config/CMakeFiles/rebuild_cache.dir
+/home/cheney/24EME_FYP/build/myur_moveit_config/CMakeFiles/edit_cache.dir
+/home/cheney/24EME_FYP/build/myur_moveit_config/CMakeFiles/test.dir
 /home/cheney/24EME_FYP/build/robotiq/robotiq/CMakeFiles/install/strip.dir
 /home/cheney/24EME_FYP/build/robotiq/robotiq/CMakeFiles/install/local.dir
 /home/cheney/24EME_FYP/build/robotiq/robotiq/CMakeFiles/install.dir

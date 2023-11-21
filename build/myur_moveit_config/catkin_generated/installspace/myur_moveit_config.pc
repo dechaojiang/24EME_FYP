@@ -1,0 +1,8 @@
+prefix=/home/cheney/24EME_FYP/install
+
+Name: myur_moveit_config
+Description: Description of myur_moveit_config
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

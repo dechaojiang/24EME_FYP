@@ -132,6 +132,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/cheney/24EME_FYP/build/gtest/cmake_install.cmake")
   include("/home/cheney/24EME_FYP/build/myur_description/cmake_install.cmake")
+  include("/home/cheney/24EME_FYP/build/myur_moveit_config/cmake_install.cmake")
   include("/home/cheney/24EME_FYP/build/robotiq/robotiq/cmake_install.cmake")
   include("/home/cheney/24EME_FYP/build/robotiq/robotiq_2f_140_gripper_visualization/cmake_install.cmake")
   include("/home/cheney/24EME_FYP/build/robotiq/robotiq_2f_85_gripper_visualization/cmake_install.cmake")
