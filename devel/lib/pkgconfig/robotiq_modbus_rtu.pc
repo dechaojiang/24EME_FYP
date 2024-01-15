@@ -1,8 +1,0 @@
-prefix=/home/cheney/24EME_FYP/devel
-
-Name: robotiq_modbus_rtu
-Description: Description of robotiq_modbus_rtu
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: rospy
