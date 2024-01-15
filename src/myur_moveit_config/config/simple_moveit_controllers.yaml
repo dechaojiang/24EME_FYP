@@ -11,9 +11,3 @@ controller_list:
       - wrist_2_joint
       - wrist_3_joint
       - finger_joint
-  - name: Robotiq_movegroup_controller
-    action_ns: follow_joint_trajectory
-    type: FollowJointTrajectory
-    default: True
-    joints:
-      - finger_joint
