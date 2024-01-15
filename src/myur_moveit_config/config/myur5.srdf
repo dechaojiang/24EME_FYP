@@ -10,6 +10,13 @@
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
     <group name="UR5_movegroup">
+        <joint name="shoulder_pan_joint"/>
+        <joint name="shoulder_lift_joint"/>
+        <joint name="elbow_joint"/>
+        <joint name="wrist_1_joint"/>
+        <joint name="wrist_2_joint"/>
+        <joint name="wrist_3_joint"/>
+        <joint name="end_effector_joint"/>
         <chain base_link="base_link" tip_link="robotiq_arg2f_base_link"/>
     </group>
     <group name="Robotiq_movegroup">

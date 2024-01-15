@@ -16,7 +16,6 @@
     <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -z 0.1" respawn="false" output="screen" />
 
     <!-- load controller -->
-    <!-- <include file="$(find ur_gazebo)/launch/ur5_bringup.launch"/> -->
     <rosparam file="$(find ur_gazebo)/config/ur5_controllers.yaml" command="load"/>
     <node name="arm_controller_spawn" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
 

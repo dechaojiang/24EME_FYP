@@ -34,8 +34,6 @@
         <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/>
     </joint>
 
-    <xacro:include filename="$(find ur_description)/urdf/inc/ur_common.xacro" />
-
     <xacro:include filename="$(find ur_description)/urdf/ur5.xacro"/>
 
     <joint name="base_joint" type="fixed">
@@ -50,5 +48,15 @@
         <parent link="wrist_3_link"/>
         <child link="robotiq_arg2f_base_link"/>
     </joint>
+    
+    
+<!-- Gazebo plugin for ROS Control -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+  
+  <xacro:include filename="$(find ur_description)/urdf/myur5.control.xacro"/>
 
 </robot>
