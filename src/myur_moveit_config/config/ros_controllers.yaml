@@ -1,5 +1,8 @@
+#simlulation settings for using moveit_sim_controllers
+# moveit_sim_hw_interface:
+#   joint_model_group:
 UR5_movegroup_controller:
-  type: position_controllers/JointTrajectoryController
+  type: effort_controllers/JointTrajectoryController
   joints:
     - shoulder_pan_joint
     - shoulder_lift_joint
@@ -10,47 +13,47 @@ UR5_movegroup_controller:
     - finger_joint
   gains:
     shoulder_pan_joint:
-      p: 100
-      d: 1
+      p: 4000
+      d: 200
       i: 1
       i_clamp: 1
     shoulder_lift_joint:
-      p: 100
-      d: 1
+      p: 10000
+      d: 200
       i: 1
       i_clamp: 1
     elbow_joint:
-      p: 100
-      d: 1
+      p: 2000
+      d: 20
       i: 1
       i_clamp: 1
     wrist_1_joint:
-      p: 100
+      p: 500
       d: 1
       i: 1
       i_clamp: 1
     wrist_2_joint:
-      p: 100
+      p: 500
       d: 1
       i: 1
       i_clamp: 1
     wrist_3_joint:
-      p: 100
-      d: 1
-      i: 1
+      p: 10
+      d: 0.1
+      i: 0
       i_clamp: 1
     finger_joint:
-      p: 100
+      p: 10
       d: 1
       i: 1
       i_clamp: 1
-Robotiq_movegroup_controller:
-  type: position_controllers/JointTrajectoryController
-  joints:
-    - finger_joint
-  gains:
-    finger_joint:
-      p: 100
-      d: 1
-      i: 1
-      i_clamp: 1
+# Robotiq_movegroup_controller:
+#   type: effort_controllers/JointTrajectoryController
+#   joints:
+#     - finger_joint
+#   gains:
+#     finger_joint:
+#       p: 100
+#       d: 1
+#       i: 1
+#       i_clamp: 1
