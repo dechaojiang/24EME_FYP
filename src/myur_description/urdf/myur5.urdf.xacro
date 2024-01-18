@@ -56,7 +56,5 @@
       <robotNamespace>/</robotNamespace>
     </plugin>
   </gazebo>
-  
-  <xacro:include filename="$(find ur_description)/urdf/myur5.control.xacro"/>
 
 </robot>
