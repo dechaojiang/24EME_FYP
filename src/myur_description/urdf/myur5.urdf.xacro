@@ -41,13 +41,26 @@
         <parent link="table"/>
         <child link="base_link"/>
     </joint>
-    
+
+    <xacro:include filename="$(find robotiq_ft_sensor)/urdf/robotiq_ft300.urdf.xacro" />
+    <xacro:robotiq_ft300 prefix="" parent="tool0">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:robotiq_ft300>
+   
+
     <xacro:include filename="$(find robotiq_2f_140_gripper_visualization)/urdf/robotiq_arg2f_140_model.xacro" /> 
-    <joint name="end_effector_joint" type="fixed">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="wrist_3_link"/>
+    <joint name="ft_gripper_joint" type="fixed">
+        <parent link="robotiq_ft_frame_id"/>
         <child link="robotiq_arg2f_base_link"/>
-    </joint>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </joint>
+
+    
+   
+
+    
+
+
     
     
 <!-- Gazebo plugin for ROS Control -->
