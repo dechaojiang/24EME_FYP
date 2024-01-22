@@ -1,44 +1,40 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="myur5">
-    <link name="world"/>
-    <link name="table">
-        <inertial>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="20"/>
-            <inertia ixx="200" ixy="200" ixz="200" iyy="200" iyz="200" izz="200"/>
-        </inertial>
-        <visual>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <geometry>
-                <box size="0.2 0.2 0.2"/>
-            </geometry>
-            <material name="Gray">
-                <color rgba="0.5 0.5 0.5 0.0"/>
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <geometry>
-                <box size="0.2 0.2 0.2"/>
-            </geometry>
-        </collision>
-    </link>    
-    <gazebo reference="table">
-        <mu1>0.2</mu1>
-        <mu2>0.2</mu2>
-        <material>Gazebo/Orange</material>
-    </gazebo>
-    <joint name="world_joint" type="fixed">
-        <parent link="world"/>
-        <child link="table"/>
-        <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/>
+
+    <xacro:include filename="$(find mir_description)/urdf/mir.urdf.xacro"/>
+    <xacro:include filename="$(find booksink)/urdf/booksink.urdf"/>
+
+    <joint name="mir_sink_joint" type="fixed">
+        <parent link="mir_base_link"/>
+        <child link="booksink_link"/>
+        <origin xyz="-0.38478 0.285055 0.2964" rpy="0.0 0.0 0.0"/>
     </joint>
-
+    
+    <link name="mass_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.1"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 .8 1"/>
+      </material>
+    </visual>
+    <inertial>
+      <mass value="400"/>
+      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+    </inertial>
+    </link>
+    
+    <joint name="mass_joint" type="fixed">
+        <origin xyz="0 0 0.1" rpy="0.0 0.0 0.0"/>
+        <parent link="mir_base_link"/>
+        <child link="mass_link"/>
+    </joint>
+    
     <xacro:include filename="$(find ur_description)/urdf/ur5.xacro"/>
-
-    <joint name="base_joint" type="fixed">
-        <origin xyz="0.0 0.0 0.1" rpy="0.0 0.0 0.0"/>
-        <parent link="table"/>
+    <joint name="sink_ur5_joint" type="fixed">
+        <origin xyz="0.69 -0.075 0.875" rpy="0.0 0.0 0.0"/>
+        <parent link="booksink_link"/>
         <child link="base_link"/>
     </joint>
 
@@ -47,7 +43,6 @@
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </xacro:robotiq_ft300>
    
-
     <xacro:include filename="$(find robotiq_2f_140_gripper_visualization)/urdf/robotiq_arg2f_140_model.xacro" /> 
     <joint name="ft_gripper_joint" type="fixed">
         <parent link="robotiq_ft_frame_id"/>
@@ -55,14 +50,6 @@
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </joint>
 
-    
-   
-
-    
-
-
-    
-    
 <!-- Gazebo plugin for ROS Control -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:arg name="mir_type" default="mir_100" />      <!-- The MiR variant. Can be "mir_100" or "mir_250" for now.-->
+  <xacro:arg name="mir_type" default="mir_250" />      <!-- The MiR variant. Can be "mir_100" or "mir_250" for now.-->
   <xacro:property name="mir_type" value="$(arg mir_type)" />  <!-- necessary because args cannot be accessed inside ${} expressions -->
 
   <xacro:include filename="$(find mir_description)/urdf/include/common_properties.urdf.xacro" />
