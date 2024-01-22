@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="camera_holder">
+  <link
+    name="camera_holder_link">
+    <inertial>
+      <origin
+        xyz="0.0400876744189435 -0.0446215529076703 0.139281386768742"
+        rpy="0 0 0" />
+      <mass
+        value="0.0521202445897232" />
+      <inertia
+        ixx="3.8230487702132E-05"
+        ixy="3.27421083036429E-10"
+        ixz="-2.26934260877874E-06"
+        iyy="5.35195933007049E-05"
+        iyz="1.93257602850377E-11"
+        izz="9.02678753746264E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camera_holder/meshes/camera_holder_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camera_holder/meshes/camera_holder_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>
