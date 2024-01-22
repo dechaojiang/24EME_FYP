@@ -42,13 +42,34 @@
     <xacro:robotiq_ft300 prefix="" parent="tool0">
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </xacro:robotiq_ft300>
+
+    
+
+    <xacro:include filename="$(find camera_holder)/urdf/camera_holder.urdf" /> 
+    <joint name="camera_holder_joint" type="fixed">
+        <parent link="wrist_3_link"/>
+        <child link="camera_holder_link"/>
+        <origin xyz="-0.0395 0 -0.03" rpy="1.5708 0 1.5708"/>
+      </joint>
+
+      <xacro:arg name="use_nominal_extrinsics" default="false" />
+      <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro"/>
+  
+      <xacro:sensor_d435i parent="camera_holder_link" use_nominal_extrinsics="$(arg use_nominal_extrinsics)">
+      <origin xyz="-0.11 0.026 0.04" rpy="-1.5708 0 1.5708"/>
+      </xacro:sensor_d435i>
+       
    
     <xacro:include filename="$(find robotiq_2f_140_gripper_visualization)/urdf/robotiq_arg2f_140_model.xacro" /> 
-    <joint name="ft_gripper_joint" type="fixed">
+      <joint name="ft_gripper_joint" type="fixed">
         <parent link="robotiq_ft_frame_id"/>
         <child link="robotiq_arg2f_base_link"/>
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </joint>
+
+   
+
+    
 
 <!-- Gazebo plugin for ROS Control -->
   <gazebo>
