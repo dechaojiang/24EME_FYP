@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="limited" default="true" doc=""/>
+    <arg name="paused" default="false" doc=""/>
+    <arg name="gui" default="true" doc=""/>
+    
+    <!-- start gazebo world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" default="worlds/empty.world"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="gui" value="$(arg gui)"/>
+    </include>    
+
+    <!-- load robot into gazebo -->
+    <param name="robot_description" command="$(find xacro)/xacro '$(find myur_description)/urdf/myur5.urdf.xacro'"/>
+    <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -z 0.1" respawn="false" output="screen" />
+
+    <!-- load controller -->
+    <rosparam file="$(find ur_gazebo)/config/ur5_controllers.yaml" command="load"/>
+    <node name="arm_controller_spawn" pkg="controller_manager" type="controller_manager" args="spawn arm_controller" respawn="false" output="screen"/>
+
+</launch>
