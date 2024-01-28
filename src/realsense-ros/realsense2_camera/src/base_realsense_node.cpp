@@ -1,4 +1,4 @@
-#include "../include/base_realsense_node.h"
+#include "realsense2_camera/base_realsense_node.h"
 #include "assert.h"
 #include <boost/algorithm/string.hpp>
 #include <algorithm>
@@ -227,7 +227,7 @@ void BaseRealSenseNode::setupErrorCallback()
             {
                 ROS_WARN_STREAM("Hardware Notification:" << n.get_description() << "," << n.get_timestamp() << "," << n.get_severity() << "," << n.get_category());
             }
-            if (error_strings.end() != find_if(error_strings.begin(), error_strings.end(), [&n] (std::string err) 
+            if (error_strings.end() != std::find_if(error_strings.begin(), error_strings.end(), [&n] (std::string err) 
                                         {return (n.get_description().find(err) != std::string::npos); }))
             {
                 ROS_ERROR_STREAM("Performing Hardware Reset.");
@@ -1532,7 +1532,7 @@ void BaseRealSenseNode::imu_callback(rs2::frame frame)
         _imu_publishers[stream_index].publish(imu_msg);
         ROS_DEBUG("Publish %s stream", rs2_stream_to_string(frame.get_profile().stream_type()));
     }
-    publishMetadata(frame, _optical_frame_id[stream_index]);
+    publishMetadata(frame, t, _optical_frame_id[stream_index]);
 }
 
 void BaseRealSenseNode::pose_callback(rs2::frame frame)
@@ -1625,7 +1625,7 @@ void BaseRealSenseNode::pose_callback(rs2::frame frame)
         _imu_publishers[stream_index].publish(odom_msg);
         ROS_DEBUG("Publish %s stream", rs2_stream_to_string(frame.get_profile().stream_type()));
     }
-    publishMetadata(frame, _frame_id[POSE]);
+    publishMetadata(frame, t, _frame_id[POSE]);
 }
 
 void BaseRealSenseNode::frame_callback(rs2::frame frame)
@@ -2430,22 +2430,21 @@ void BaseRealSenseNode::publishFrame(rs2::frame f, const ros::Time& t,
     if (is_publishMetadata)
     {
         auto& cam_info = camera_info.at(stream);
-        publishMetadata(f, cam_info.header.frame_id);
+        publishMetadata(f, t, cam_info.header.frame_id);
     }
 }
 
-void BaseRealSenseNode::publishMetadata(rs2::frame f, const std::string& frame_id)
+void BaseRealSenseNode::publishMetadata(rs2::frame f, const ros::Time& header_time, const std::string& frame_id)
 {
     stream_index_pair stream = {f.get_profile().stream_type(), f.get_profile().stream_index()};    
     if (_metadata_publishers.find(stream) != _metadata_publishers.end())
     {
-        ros::Time t(frameSystemTimeSec(f));
         auto& md_publisher = _metadata_publishers.at(stream);
         if (0 != md_publisher->getNumSubscribers())
         {
             realsense2_camera::Metadata msg;
             msg.header.frame_id = frame_id;
-            msg.header.stamp = t;
+            msg.header.stamp = header_time;
             std::stringstream json_data;
             const char* separator = ",";
             json_data << "{";
