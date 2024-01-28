@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="myur5">
 
-    <xacro:include filename="$(find mymir_description)/urdf/mir.urdf.xacro"/>
+    <xacro:include filename="$(find mymir_description)/urdf/mymir.urdf.xacro"/>
     <xacro:include filename="$(find booksink)/urdf/booksink.urdf"/>
 
     <joint name="mir_sink_joint" type="fixed">
