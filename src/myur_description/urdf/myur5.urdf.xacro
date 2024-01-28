@@ -5,7 +5,7 @@
     <xacro:include filename="$(find booksink)/urdf/booksink.urdf"/>
 
     <joint name="mir_sink_joint" type="fixed">
-        <parent link="mir_base_link"/>
+        <parent link="mir/base_link"/>
         <child link="booksink_link"/>
         <origin xyz="-0.38478 0.285055 0.2964" rpy="0.0 0.0 0.0"/>
     </joint>
@@ -27,7 +27,7 @@
     
     <joint name="mass_joint" type="fixed">
         <origin xyz="0 0 0.1" rpy="0.0 0.0 0.0"/>
-        <parent link="mir_base_link"/>
+        <parent link="mir/base_link"/>
         <child link="mass_link"/>
     </joint>
     
