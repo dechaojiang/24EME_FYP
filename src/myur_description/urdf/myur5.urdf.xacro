@@ -1,14 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="myur5">
 
-    <xacro:include filename="$(find mymir_description)/urdf/mymir.urdf.xacro"/>
     <xacro:include filename="$(find booksink)/urdf/booksink.urdf"/>
-
-    <joint name="mir_sink_joint" type="fixed">
-        <parent link="mir/base_link"/>
-        <child link="booksink_link"/>
-        <origin xyz="-0.38478 0.285055 0.2964" rpy="0.0 0.0 0.0"/>
-    </joint>
     
     <link name="mass_link">
     <visual>
@@ -20,14 +13,14 @@
       </material>
     </visual>
     <inertial>
-      <mass value="400"/>
+      <mass value="20"/>
       <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
     </inertial>
     </link>
     
     <joint name="mass_joint" type="fixed">
-        <origin xyz="0 0 0.1" rpy="0.0 0.0 0.0"/>
-        <parent link="mir/base_link"/>
+        <origin xyz="0.345 -0.4 0.1" rpy="0.0 0.0 0.0"/>
+        <parent link="booksink_link"/>
         <child link="mass_link"/>
     </joint>
     
@@ -66,16 +59,11 @@
         <child link="robotiq_arg2f_base_link"/>
         <origin xyz="0 0 0" rpy="0 0 0"/>
       </joint>
-
-   
-
-    
-
-<!-- Gazebo plugin for ROS Control -->
-  <gazebo>
-    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-  </gazebo>
+      
+    <!-- <gazebo>
+        <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo> -->
 
 </robot>

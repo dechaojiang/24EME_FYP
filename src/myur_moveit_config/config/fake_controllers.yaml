@@ -1,5 +1,5 @@
 controller_list:
-  - name: fake_UR5_movegroup_controller
+  - name: fake_UR5_movergroup_controller
     type: $(arg fake_execution_type)
     joints:
       - shoulder_pan_joint
@@ -13,7 +13,7 @@ controller_list:
     joints:
       - finger_joint
 initial:  # Define initial robot poses per group
-  - group: UR5_movegroup
-    pose: ur_init
+  - group: UR5_movergroup
+    pose: UR_INIT
   - group: Robotiq_movegroup
-    pose: uropen
+    pose: RBT_OPEN
