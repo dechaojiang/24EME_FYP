@@ -13,8 +13,8 @@
       </material>
     </visual>
     <inertial>
-      <mass value="20"/>
-      <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+      <mass value="200"/>
+      <inertia ixx="4.4" ixy="4.0" ixz="4.0" iyy="4.4" iyz="4.0" izz="4.2"/>
     </inertial>
     </link>
     
