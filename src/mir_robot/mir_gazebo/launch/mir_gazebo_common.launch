@@ -4,7 +4,7 @@
   <arg name="robot_y"   default="0.0" />
   <arg name="robot_yaw" default="0.0" />
 
-  <arg name="mir_type" default="mir_100" doc="The MiR variant. Can be 'mir_100' or 'mir_250' for now." />
+  <arg name="mir_type" default="mir_250" doc="The MiR variant. Can be 'mir_100' or 'mir_250' for now." />
 
   <arg name="tf_prefix" default="" doc="tf_prefix to be used by gazebo plugins and in the robot's urdf etc." />
 
