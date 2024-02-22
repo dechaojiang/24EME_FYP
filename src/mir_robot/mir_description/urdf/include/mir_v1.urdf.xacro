@@ -31,7 +31,7 @@
   </xacro:if>
 
   <xacro:if value="${mir_type == 'mir_250'}">
-    <xacro:property name="mir_base_mass" value="97.0" />
+    <xacro:property name="mir_base_mass" value="1997.0" />
     <xacro:property name="mir_act_wheel_radius" value="0.100" />
     <xacro:property name="mir_act_wheel_width" value="0.038" />
     <xacro:property name="mir_act_wheel_mass" value="1.0" />
