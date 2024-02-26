@@ -973,7 +973,7 @@
         <child link="shoulder_link" />
         <origin rpy="0 0 0" xyz="0 0 0.089159" />
         <axis xyz="0 0 1" />
-        <limit effort="150.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.141592653589793" />
+        <limit effort="200.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.141592653589793" />
         <dynamics damping="0" friction="50" />
     </joint>
     <joint name="shoulder_lift_joint" type="revolute">
@@ -997,7 +997,7 @@
         <child link="wrist_1_link" />
         <origin rpy="0 0 0" xyz="-0.39225 0 0.10915" />
         <axis xyz="0 0 1" />
-        <limit effort="28.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.141592653589793" />
+        <limit effort="150.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.141592653589793" />
         <dynamics damping="0" friction="50" />
     </joint>
     <joint name="wrist_2_joint" type="revolute">
@@ -1005,16 +1005,16 @@
         <child link="wrist_2_link" />
         <origin rpy="1.570796327 0 0" xyz="0 -0.09465 -1.941303950897609e-11" />
         <axis xyz="0 0 1" />
-        <limit effort="28.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.141592653589793" />
+        <limit effort="60.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.141592653589793" />
         <dynamics damping="0" friction="50" />
     </joint>
     <joint name="wrist_3_joint" type="revolute">
-        <parent link="wrist_2_link" />
+        <parent link="wrist_2_link" /> 
         <child link="wrist_3_link" />
         <origin rpy="1.570796326589793 3.141592653589793 3.141592653589793" xyz="0 0.0823 -1.688001216681175e-11" />
         <axis xyz="0 0 1" />
-        <limit effort="28.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.141592653589793" />
-        <dynamics damping="0" friction="50" />
+        <limit effort="5000.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="3.141592653589793" />
+        <dynamics damping="100" friction="200" />
     </joint>
     <!-- ROS-Industrial 'base' frame: base_link to UR 'Base' Coordinates transform -->
     <link name="base" />
@@ -1058,7 +1058,7 @@
     <link name="ft300_sensor">
         <inertial>
             <origin rpy="0 0 0" xyz="0 0 -0.017" />
-            <mass value="0.300" />
+            <mass value="0.00" />
             <inertia ixx="0.000262" ixy="0" ixz="1e-06" iyx="0" iyy="0.000265" iyz="1e-06" izx="-1e-06" izy="1e-06" izz="0.000219" />
         </inertial>
         <visual>
@@ -1095,7 +1095,7 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.1" />
+            <mass value="0.072" />
             <origin xyz="0 0 0" rpy="0 0 0" />
             <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
         </inertial>
