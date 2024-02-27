@@ -496,6 +496,58 @@
             <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257" />
         </inertial>
     </link>
+     <!-- camera depth joints and links -->
+     <joint name="camera_depth_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <parent link="camera_link" />
+        <child link="camera_depth_frame" />
+    </joint>
+    <link name="camera_depth_frame" />
+    <joint name="camera_depth_optical_joint" type="fixed">
+        <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+        <parent link="camera_depth_frame" />
+        <child link="camera_depth_optical_frame" />
+    </joint>
+    <link name="camera_depth_optical_frame" />
+    <!-- camera left IR joints and links -->
+    <joint name="camera_infra1_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.0 0" />
+        <parent link="camera_link" />
+        <child link="camera_infra1_frame" />
+    </joint>
+    <link name="camera_infra1_frame" />
+    <joint name="camera_infra1_optical_joint" type="fixed">
+        <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+        <parent link="camera_infra1_frame" />
+        <child link="camera_infra1_optical_frame" />
+    </joint>
+    <link name="camera_infra1_optical_frame" />
+    <!-- camera right IR joints and links -->
+    <joint name="camera_infra2_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 -0.05 0" />
+        <parent link="camera_link" />
+        <child link="camera_infra2_frame" />
+    </joint>
+    <link name="camera_infra2_frame" />
+    <joint name="camera_infra2_optical_joint" type="fixed">
+        <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+        <parent link="camera_infra2_frame" />
+        <child link="camera_infra2_optical_frame" />
+    </joint>
+    <link name="camera_infra2_optical_frame" />
+    <!-- camera color joints and links -->
+    <joint name="camera_color_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.015 0" />
+        <parent link="camera_link" />
+        <child link="camera_color_frame" />
+    </joint>
+    <link name="camera_color_frame" />
+    <joint name="camera_color_optical_joint" type="fixed">
+        <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+        <parent link="camera_color_frame" />
+        <child link="camera_color_optical_frame" />
+    </joint>
+    <link name="camera_color_optical_frame" />
     <gazebo reference="camera_link">
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>
@@ -621,12 +673,38 @@
             <infrared2OpticalframeName>camera_right_ir_optical_frame</infrared2OpticalframeName>
             <rangeMinDepth>0.2</rangeMinDepth>
             <rangeMaxDepth>10.0</rangeMaxDepth>
-            <pointCloud>False</pointCloud>
+            <pointCloud>True</pointCloud>
             <pointCloudTopicName>depth/color/points</pointCloudTopicName>
             <pointCloudCutoff>0.25</pointCloudCutoff>
             <pointCloudCutoffMax>9.0</pointCloudCutoffMax>
         </plugin>
     </gazebo>
+
+    <link name="camera_accel_frame" />
+    <link name="camera_accel_optical_frame" />
+    <link name="camera_gyro_frame" />
+    <link name="camera_gyro_optical_frame" />
+    <joint name="camera_accel_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.01174 -0.00552 0.0051" />
+        <parent link="camera_link" />
+        <child link="camera_accel_frame" />
+    </joint>
+    <joint name="camera_accel_optical_joint" type="fixed">
+        <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+        <parent link="camera_accel_frame" />
+        <child link="camera_accel_optical_frame" />
+    </joint>
+    <joint name="camera_gyro_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="-0.01174 -0.00552 0.0051" />
+        <parent link="camera_link" />
+        <child link="camera_gyro_frame" />
+    </joint>
+    <joint name="camera_gyro_optical_joint" type="fixed">
+        <origin rpy="-1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0" />
+        <parent link="camera_gyro_frame" />
+        <child link="camera_gyro_optical_frame" />
+    </joint>
+
     <!-- Mimic joints plugin-->
     <gazebo>
         <plugin filename="libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so" name="mimic_robotiq_140_1">
