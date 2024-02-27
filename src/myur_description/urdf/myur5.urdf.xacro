@@ -8,25 +8,31 @@
       <geometry>
         <cylinder length="0.1" radius="0.1"/>
       </geometry>
+      <surface>
+		<friction>
+		   <ode>
+		      <mu>100</mu>
+		      <mu2>100</mu2>
+	          </ode>
+		</friction>
+      </surface>
       <material name="blue">
         <color rgba="0 0 .8 1"/>
       </material>
     </visual>
-    <inertial>
-      <mass value="200"/>
-      <inertia ixx="4.4" ixy="4.0" ixz="4.0" iyy="4.4" iyz="4.0" izz="4.2"/>
-    </inertial>
+    <mass value="200" />
+    <inertial auto="true" />
     </link>
     
     <joint name="mass_joint" type="fixed">
-        <origin xyz="0.345 -0.4 0.1" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0 0 0.1" rpy="0.0 0.0 0.0"/>
         <parent link="booksink_link"/>
         <child link="mass_link"/>
     </joint>
     
     <xacro:include filename="$(find ur_description)/urdf/ur5.xacro"/>
     <joint name="sink_ur5_joint" type="fixed">
-        <origin xyz="0.69 -0.075 0.875" rpy="0.0 0.0 0.0"/>
+        <origin xyz="-0.308 -0.2105 0.875" rpy="0.0 0.0 -1.57"/>
         <parent link="booksink_link"/>
         <child link="base_link"/>
     </joint>

@@ -42,6 +42,14 @@
         <mesh
           filename="package://booksink/meshes/booksink_link.STL" />
       </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>119.91</mu>
+            <mu2>119.91</mu2>
+          </ode>
+        </friction>
+      </surface>
     </collision>
   </link>
 </robot>

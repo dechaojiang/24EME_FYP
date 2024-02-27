@@ -2,7 +2,7 @@
 <launch>
 
   <!-- Gazebo options -->
-  <arg name="world_pose" default="-x -0.38478 -y 0.285055 -z 0.2999 -R 0 -P 0 -Y 0" doc="Pose to spawn the robot at"/>
+  <arg name="world_pose" default="-x 0 -y 0 -z 0.2999 -R 0 -P 0 -Y 0" doc="Pose to spawn the robot at"/>
   
   <!-- MoveIt options -->
   <arg name="pipeline" default="ompl" doc="Planning pipeline to use with MoveIt"/>

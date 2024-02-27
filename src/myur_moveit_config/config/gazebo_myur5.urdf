@@ -6,7 +6,7 @@
 <robot name="myur5">
     <link name="booksink_link">
         <inertial>
-            <origin rpy="0 0 0" xyz="0.526222946096893 0.678509860201614 0.28457334883271" />
+            <origin rpy="0 0 0" xyz="0 0 0.28457334883271" />
             <mass value="41.6884762061747" />
             <inertia ixx="2.62451743594391" ixy="-0.589704408483634" ixz="-0.000559520034314575" iyy="3.12172134247769" iyz="-2.18230871282791E-06" izz="2.98496788067529" />
         </inertial>
@@ -15,6 +15,14 @@
             <geometry>
                 <mesh filename="package://booksink/meshes/booksink_link.STL" />
             </geometry>
+            <surface>
+		<friction>
+		   <ode>
+		      <mu>100</mu>
+		      <mu2>100</mu2>
+	          </ode>
+		</friction>
+	     </surface>
             <material name="">
                 <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
             </material>
@@ -29,77 +37,21 @@
     <link name="mass_link">
         <visual>
             <geometry>
-                <cylinder length="0.1" radius="0.1" />
+                <cylinder length="0.1" radius="0.05" />
             </geometry>
             <material name="blue">
                 <color rgba="0 0 .8 1" />
             </material>
         </visual>
-        <inertial>
-            <mass value="200" />
-            <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2" />
-        </inertial>
+        <mass value="200" />
+        <inertial auto="true" />
     </link>
     <joint name="mass_joint" type="fixed">
-        <origin rpy="0.0 0.0 0.0" xyz="0.345 -0.4 0.1" />
+        <origin rpy="0.0 0.0 0.0" xyz="0 0 0.1" />
         <parent link="booksink_link" />
         <child link="mass_link" />
     </joint>
-    <!--
-    Base UR robot series xacro macro.
-
-    NOTE: this is NOT a URDF. It cannot directly be loaded by consumers
-    expecting a flattened '.urdf' file. See the top-level '.xacro' for that
-    (but note: that .xacro must still be processed by the xacro command).
-
-    For use in '.launch' files: use one of the 'load_urX.launch' convenience
-    launch files.
-
-    This file models the base kinematic chain of a UR robot, which then gets
-    parameterised by various configuration files to convert it into a UR3(e),
-    UR5(e), UR10(e) or UR16e.
-
-    NOTE: the default kinematic parameters (ie: link lengths, frame locations,
-    offets, etc) do not correspond to any particular robot. They are defaults
-    only. There WILL be non-zero offsets between the Forward Kinematics results
-    in TF (ie: robot_state_publisher) and the values reported by the Teach
-    Pendant.
-
-    For accurate (and robot-specific) transforms, the 'kinematics_parameters_file'
-    parameter MUST point to a .yaml file containing the appropriate values for
-    the targetted robot.
-
-    If using the UniversalRobots/Universal_Robots_ROS_Driver, follow the steps
-    described in the readme of that repository to extract the kinematic
-    calibration from the controller and generate the required .yaml file.
-
-    Main author of the migration to yaml configs: Ludovic Delval.
-
-    Contributors to previous versions (in no particular order):
-
-     - Felix Messmer
-     - Kelsey Hawkins
-     - Wim Meeussen
-     - Shaun Edwards
-     - Nadia Hammoudeh Garcia
-     - Dave Hershberger
-     - G. vd. Hoorn
-     - Philip Long
-     - Dave Coleman
-     - Miguel Prada
-     - Mathias Luedtke
-     - Marcel Schnirring
-     - Felix von Drigalski
-     - Felix Exner
-     - Jimmy Da Silva
-     - Ajit Krisshna N L
-     - Muhammad Asif Rana
-  -->
-    <!--
-    NOTE: the macro defined in this file is NOT part of the public API of this
-          package. Users CANNOT rely on this file being available, or stored in
-          this location. Nor can they rely on the existence of the macro.
-  -->
+   
     <transmission name="shoulder_pan_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="shoulder_pan_joint">
@@ -404,7 +356,7 @@
         <child link="tool0" />
     </joint>
     <joint name="sink_ur5_joint" type="fixed">
-        <origin rpy="0.0 0.0 0.0" xyz="0.69 -0.075 0.875" />
+        <origin rpy="0.0 0.0 -1.57" xyz="-0.308 -0.2105 0.875" />
         <parent link="booksink_link" />
         <child link="base_link" />
     </joint>
