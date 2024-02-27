@@ -1,5 +1,5 @@
 controller_list:
-  - name: UR5_movegroup_controller
+  - name: UR5_movergroup_controller
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
     default: True

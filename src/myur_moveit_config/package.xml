@@ -5,8 +5,8 @@
   <description>
      An automatically generated package with all the configuration and launch files for using the myur5 with the MoveIt Motion Planning Framework
   </description>
-  <author email="zhangtong.073@gmail.com">Zhang Tong and Jiang Dechao</author>
-  <maintainer email="zhangtong.073@gmail.com">Zhang Tong and Jiang Dechao</maintainer>
+  <author email="dechao823@outlook.com">dechao and tong</author>
+  <maintainer email="dechao823@outlook.com">dechao and tong</maintainer>
 
   <license>BSD</license>
 
