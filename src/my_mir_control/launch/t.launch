@@ -1,13 +1,22 @@
 <?xml version="1.0" ?>
 <launch>
 
+<arg name="start_x"   default="10.0" />
+<arg name="start_y"   default="10.0" />
+
 <!-- BEGIN MiR -->
 <include file="$(find my_mir_control)/launch/mir_empty_world.launch">
     <arg name="tf_prefix" value="mir"/>
     <arg name="mir_type" value="mir_250"/>
+    <arg name="world_name" value="worlds/empty.world"/>
+    <arg name="robot_x"   value="$(arg start_x)" />
+    <arg name="robot_y"   value="$(arg start_y)" />
+    <arg name="robot_yaw" value="0.0" />
 </include>
 
 <!-- BEGIN UR5 -->
-<include file="$(find myur_moveit_config)/launch/collaborative_launch/myur_control.launch" />
+<include file="$(find myur_moveit_config)/launch/collaborative_launch/myur_control.launch">
+    <arg name="world_pose" value="-x $(arg start_x) -y $(arg start_y) -z 0.2999 -R 0 -P 0 -Y 0" doc="Pose to spawn the robot at"/>
+</include>
 
 </launch>
