@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+
+   <!-- Gazebo options -->
+  <arg name="world_pose" default="-x 1 -y 1 -z 0 -R 0 -P 0 -Y 0" doc="Pose to spawn the robot at"/>
+  <arg name="initial_joint_positions" default=" -J elbow_joint 1.3617 -J finger_joint 0.08 -J shoulder_lift_joint -1.4796 -J shoulder_pan_joint 3.3238 -J wrist_1_joint -1.4796 -J wrist_2_joint -1.4367 -J wrist_3_joint -2.7663" doc="Initial joint configuration of the robot"/>
+  
+  <!-- Set the robot urdf on the parameter server -->
+  <param name="robot_description" textfile="$(find booksink_ur_moveit_config)/config/gazebo_myur5.urdf" />
+
+  <!-- Spawn the robot in Gazebo -->
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot $(arg world_pose) $(arg initial_joint_positions)"
+    respawn="false" output="screen" />
+
+  <!-- Load the controller parameters onto the parameter server -->
+  <rosparam file="$(find booksink_ur_moveit_config)/config/gazebo_controllers.yaml" />
+  <include file="$(find booksink_ur_moveit_config)/launch/ros_controllers.launch"/>
+
+  <!-- Spawn the Gazebo ROS controllers -->
+  <node name="ur_gazebo_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller" />
+
+  <!-- Given the published joint states, publish tf for the robot links -->
+  <node name="ur_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+</launch>
