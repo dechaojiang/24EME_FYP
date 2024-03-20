@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+  
+
+    <include>
+      <uri>model://book_1</uri>
+      <name>book_1</name>
+      <pose>5.291938 5.099524 0.821380 -1.545140 -0 -1.550380</pose>
+    </include>
+    <include>
+      <uri>model://book_2</uri>
+      <name>book_2</name>
+      <pose>5.166265 5.112342 0.765291 -1.325030 -0 -1.517459</pose>
+    </include>
+    <include>
+      <uri>model://book_3</uri>
+      <name>book_3</name>
+      <pose>5.096244 5.120840 0.738452 -1.432061 0 -1.603650</pose>
+    </include>
+    
+
+  </world>
+</sdf>
