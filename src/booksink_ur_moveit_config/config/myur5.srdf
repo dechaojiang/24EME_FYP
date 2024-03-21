@@ -36,6 +36,21 @@
     <group_state name="RBT_OPEN" group="Robotiq_movegroup">
         <joint name="finger_joint" value="0.08"/>
     </group_state>
+    <group_state name="UR_GRASP" group="UR5_movegroup">
+        <joint name="ur5/elbow_joint" value="0.9424"/>
+        <joint name="ur5/shoulder_lift_joint" value="-0.6457"/>
+        <joint name="ur5/shoulder_pan_joint" value="1.9373"/>
+        <joint name="ur5/wrist_1_joint" value="-5.0440"/>
+        <joint name="ur5/wrist_2_joint" value="1.605"/>
+        <joint name="ur5/wrist_3_joint" value="-1.13446"/>
+    </group_state>
+    <group_state name="RBT_GRASP" group="Robotiq_movegroup">
+        <joint name="finger_joint" value="0.5585"/>
+    </group_state>   
+    <group_state name="RBT_PRE_GRASP" group="Robotiq_movegroup">
+        <joint name="finger_joint" value="0.4537"/>
+    </group_state>
+    
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="robotiq" parent_link="ur5/tool0" group="Robotiq_movegroup" parent_group="UR5_movegroup"/>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
