@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<launch>
+
+<arg name="start_x"   default="10.0" />
+<arg name="start_y"   default="10.0" />
+<arg name="tf_prefix" default="mir"/>
+<arg name="prefix" default="mir/"/>
+
+<!-- BEGIN MiR -->
+<include file="$(find my_mir_control)/launch/mir_empty_world.launch">
+    <arg name="tf_prefix" value="$(arg tf_prefix)"/>
+    <arg name="mir_type" value="mir_250"/>
+    <arg name="world_name" value="$(find booksink)/worlds/bookworld.world"/>
+    <arg name="robot_x"   value="$(arg start_x)" />
+    <arg name="robot_y"   value="$(arg start_y)" />
+    <arg name="robot_yaw" value="0.0" />
+</include>
+
+<!-- BEGIN UR5 -->
+<include file="$(find booksink_ur_moveit_config)/launch/collaborative_launch/myur_control.launch">
+    <arg name="world_pose" value="-x 5 -y 5 -z 0 -R 0 -P 0 -Y 0" doc="Pose to spawn the robot at"/>
+</include>
+
+<!-- BEGIN MiR NAVIGATION -->
+<!-- <include file="$(find my_mir_control)/launch/hector_mapping.launch">
+    <arg name="base_frame" value="$(arg prefix)base_footprint"/>
+    <arg name="odom_frame" value="$(arg prefix)odom"/>
+</include>
+
+<include file="$(find mir_navigation)/launch/move_base.xml">
+    <arg name="with_virtual_walls" value="false"/>
+    <arg name="prefix" value="$(arg prefix)"/>
+</include> -->
+
+<node type="rviz" name="rviz" pkg="rviz" args="-d $(find my_mir_control)/rviz/navigation.rviz" />
+
+</launch>
