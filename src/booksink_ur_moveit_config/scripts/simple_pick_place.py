@@ -8,10 +8,12 @@ import actionlib
 import geometry_msgs
 
 def simple_pick_place():
+    
+    # initialize node
     moveit_commander.roscpp_initialize(sys.argv)
     rospy.init_node('simple_pick_place',
                     anonymous=True)
-    
+    # creating ur group and rbt group for moveit control
     ur_group = moveit_commander.MoveGroupCommander("UR5_movegroup")
     rbt_group= moveit_commander.MoveGroupCommander("Robotiq_movegroup")
 
@@ -23,30 +25,27 @@ def simple_pick_place():
     rbt_client.wait_for_server()
     rospy.loginfo('Execute Trajectory server is available for Robotiq')
 
-    ur_group.set_named_target("UR_INIT")
-    plan_success, plan, planning_time, error_code = ur_group.plan()
-    ur_goal = moveit_msgs.msg.ExecuteTrajectoryGoal()
-    ur_goal.trajectory = plan
+
+    ur_group.set_named_target("UR_INIT") # set target
+    plan_success, plan, planning_time, error_code = ur_group.plan() # plan
+    ur_goal = moveit_msgs.msg.ExecuteTrajectoryGoal() # create goal
+    ur_goal.trajectory = plan # give data to the goal
     ur_client.send_goal(ur_goal)
     ur_client.wait_for_result()
     init_Pose = ur_group.get_current_pose("ur5/tool0").pose
 
     ur_group.set_named_target("UR_PREGRASP")
     plan_success, plan, planning_time, error_code = ur_group.plan()
-    ur_goal = moveit_msgs.msg.ExecuteTrajectoryGoal()
     ur_goal.trajectory = plan
     ur_client.send_goal(ur_goal)
     ur_client.wait_for_result()
 
-    Pose = ur_group.get_current_pose("ur5/tool0")
-    down_Pose = Pose
-    up_Pose = Pose.pose
+    Pose = ur_group.get_current_pose("ur5/tool0").pose
+    Pose.position.z = Pose.position.z - 0.07
     print(Pose)
-    down_Pose.pose.position.z = Pose.pose.position.z - 0.07
-    print(down_Pose)
 
-    ur_group.set_pose_target(down_Pose)
-    ur_goal = moveit_msgs.msg.ExecuteTrajectoryGoal()
+    ur_group.set_pose_target(Pose)
+    plan_success, plan, planning_time, error_code = ur_group.plan()
     ur_goal.trajectory = plan
     ur_client.send_goal(ur_goal)
     ur_client.wait_for_result()
@@ -58,22 +57,24 @@ def simple_pick_place():
     rbt_client.send_goal(rbt_goal)
     rbt_client.wait_for_result()
 
-    # waypoints2 = []
-    # up_Pose.position.z = Pose.pose.position.z + 0.2
-    # waypoints2.append(init_Pose)
-    # fraction2 = 0.0
-    # for count_cartesian_path in range(0,3):
-    #   if fraction2 < 1.0:
-    #     (plan_cartesian, fraction2) = ur_group.compute_cartesian_path(waypoints2, 0.01, 0.0)
-    #   else:
-    #     break
-    # ur_goal = moveit_msgs.msg.ExecuteTrajectoryGoal()
-    # ur_goal.trajectory = plan_cartesian
-    # ur_client.send_goal(ur_goal)
-    # ur_client.wait_for_result()
-
-
-
+    Pose.position.z = Pose.position.z + 0.15
+    ur_group.set_pose_target(Pose)
+    plan_success, plan, planning_time, error_code = ur_group.plan()
+    ur_goal.trajectory = plan
+    ur_client.send_goal(ur_goal)
+    ur_client.wait_for_result()
+    
+    waypoints = []
+    waypoints.append(init_Pose)
+    fraction = 0.0
+    for count_cartesian_path in range(0,2):
+      if fraction < 1.0:
+        (plan_cartesian, fraction2) = ur_group.compute_cartesian_path(waypoints, 0.01, 0.0)
+      else:
+        break
+    ur_goal.trajectory = plan_cartesian
+    ur_client.send_goal(ur_goal)
+    ur_client.wait_for_result()
 
     # When finished shut down moveit_commander.
     moveit_commander.roscpp_shutdown()
