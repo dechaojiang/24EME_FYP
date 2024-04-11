@@ -5,7 +5,15 @@ import rospy
 import moveit_commander
 import moveit_msgs.msg
 import actionlib
-import geometry_msgs
+from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import Pose
+from tf.transformations import quaternion_from_euler
+
+g_pose = None
+
+def callback(msg):
+  global g_pose
+  g_pose = msg
 
 def simple_pick_place():
     
@@ -25,10 +33,10 @@ def simple_pick_place():
     rbt_client.wait_for_server()
     rospy.loginfo('Execute Trajectory server is available for Robotiq')
 
+    ur_goal = moveit_msgs.msg.ExecuteTrajectoryGoal() # create goal
 
     ur_group.set_named_target("UR_INIT") # set target
     plan_success, plan, planning_time, error_code = ur_group.plan() # plan
-    ur_goal = moveit_msgs.msg.ExecuteTrajectoryGoal() # create goal
     ur_goal.trajectory = plan # give data to the goal
     ur_client.send_goal(ur_goal)
     ur_client.wait_for_result()
@@ -63,6 +71,7 @@ def simple_pick_place():
     ur_goal.trajectory = plan
     ur_client.send_goal(ur_goal)
     ur_client.wait_for_result()
+
     
     waypoints = []
     waypoints.append(init_Pose)
@@ -76,12 +85,59 @@ def simple_pick_place():
     ur_client.send_goal(ur_goal)
     ur_client.wait_for_result()
 
+
+
+
     # When finished shut down moveit_commander.
     moveit_commander.roscpp_shutdown()
+
+def gpd_grasp():
+    
+   
+    # # initialize node
+    # moveit_commander.roscpp_initialize(sys.argv)
+    rospy.init_node('simple_pick_place',
+                    anonymous=True)
+    rate = rospy.Rate(3)
+
+    global g_pose 
+    rospy.Subscriber("/get_grasps/gpd_grasps", PoseStamped, callback)
+    # creating ur group and rbt group for moveit control
+    ur_group = moveit_commander.MoveGroupCommander("UR5_movegroup")
+    rbt_group= moveit_commander.MoveGroupCommander("Robotiq_movegroup")
+
+    ur_client = actionlib.SimpleActionClient('execute_trajectory', moveit_msgs.msg.ExecuteTrajectoryAction)
+    ur_client.wait_for_server()
+    rospy.loginfo('Execute Trajectory server is available for UR')
+
+    rbt_client = actionlib.SimpleActionClient('execute_trajectory', moveit_msgs.msg.ExecuteTrajectoryAction)
+    rbt_client.wait_for_server()
+    rospy.loginfo('Execute Trajectory server is available for Robotiq')
+
+    ur_goal = moveit_msgs.msg.ExecuteTrajectoryGoal() # create goal
+
+    while not rospy.is_shutdown():
+      if g_pose != None:
+        break
+      rate.sleep()
+    
+    # while not rospy.is_shutdown():
+    #   print(g_pose)
+    #   rate.sleep()
+
+    ur_group.set_pose_target(g_pose)
+    plan_success, plan, planning_time, error_code = ur_group.plan()
+    ur_goal.trajectory = plan
+    ur_client.send_goal(ur_goal)
+    ur_client.wait_for_result()
+
+  
+
 
 
 if __name__=='__main__':
   try:
-    simple_pick_place()
+    #simple_pick_place()
+    gpd_grasp()
   except rospy.ROSInterruptException:
     pass
