@@ -13,7 +13,7 @@
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://booksink/meshes/booksink_link.STL" />
+                <mesh filename="package://booksink/meshes/booklabel.dae" />
             </geometry>
             <surface>
 		<friction>
@@ -30,7 +30,7 @@
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0" />
             <geometry>
-                <mesh filename="package://booksink/meshes/booksink_link.STL" />
+                <mesh filename="package://booksink/meshes/booklabel.dae" />
             </geometry>
         </collision>
     </link>
