@@ -23,13 +23,7 @@ In this final year project, we proposed Libot. Libot is a mobile manipulation ro
 ## Testing and Results
 
 
-## Experimental Design
-### Structure of Libot
-### Simulation Environment
-### Control Methodology
 
-**Dependencies:**
-Make sure the official repository of Universal Robot is in your overlay workspace
 
 
 
