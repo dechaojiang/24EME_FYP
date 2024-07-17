@@ -22,6 +22,9 @@ In this final year project, we proposed Libot. Libot is a mobile manipulation ro
 
 ## Testing and Results
 
+**CLICK BELOW TO SEE DEMO VIDEO**
+
+[![High-performance 3D printing platform for Advanced Functional Materials](https://img.youtube.com/vi/TtIdhxY4zEc/0.jpg)](https://www.youtube.com/watch?v=TtIdhxY4zEc)
 
 
 
