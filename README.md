@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/db89f4b8-7301-4193-9e65-333638aa6838)# Development and Testing of a Moblie Manipulation Robot
+# Development and Testing of a Moblie Manipulation Robot
 
 The graduation project for Bachelor of Science, from the class of 2024 of the [_Department of Electromechanical Engineering_](https://www.fst.um.edu.mo/eme/), _University of Macau_
 
